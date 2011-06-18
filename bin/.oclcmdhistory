@@ -1,0 +1,47 @@
+runapp fobd.so
+runapp sample.so
+runapp jsd.so
+runapp fobd.so 1
+'gcy
+runapp sample.so 1 2 3
+runapp sample.so 1 2 3
+runapp sample.so 1 2 3
+runapp sample.so
+runapp sample.so
+runapp sample.so
+runapp sample.so
+runapp sample.so
+runapp sample.so
+runapp sample.so
+runapp sample.so 1.0 3.0 1.0
+runapp sample.so 1.0 3.0 1.0
+runapp sample.so
+runapp sample.so 0.0 3.0 1.0
+runapp sample.so
+runapp sample.so 0.0 3.0 1.0
+runapp sample.so 0.0 3.0 1.0
+runapp sample.so 0.0 3.0
+runapp sample.so 0.0 3.0
+runapp sample.so 0.0 3.0 1.0
+runapp sample.so 0.5 3.0 1.0
+runapp sample.so 0.0 3.0 1.0
+runapp sample.so -0.5 3.0 1.0
+runapp sample.so -0.5 3.0 1.0
+runapp sample.so 0.5 3.0 1.0
+runapp sample.so 0.5 3.0 1.0
+runapp sample.so -0.5 3.0 1.0
+runapp sample.so
+runapp sample-.so -.5 
+runapp sample.so
+runapp sample-.so -.5 
+runapp sample-.so -.5 
+runapp sample-.so -.5 
+runapp oonuki.so
+run oonuki.so
+runapp oonuki.so
+runapp oonuki.so
+runapp oonuki.so
+runapp fobd.so
+runapp fobd.so
+runapp oonuki.so
+runapp oonuki.so

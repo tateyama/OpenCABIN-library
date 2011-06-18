@@ -1,0 +1,47 @@
+# OpenCABIN Library
+#
+#  Copyright (C) 2006,2007 KGT Inc.
+#
+#   This file is part of the OpenCABIN Library developed
+#   under CnC project sponsored by National Institute of
+#   Information and Communications Technology (NICT).
+#
+#   The OpenCABIN Library is free software; you can redistribute it and/or
+#   modify it under the terms of the GNU Lesser General Public
+#   License as published by the Free Software Foundation; either
+#   version 2.1 of the License, or (at your option) any later version.
+#
+#   The OpenCABIN Library is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#   See the GNU Lesser General Public License for more details.
+
+TOPDIR=../
+LIBUTIL=util/libutil.a
+LIBFOB=bird/libfob.a
+
+all:  master renderer
+
+EXTS=symbol_name.o symbol_value.o shared_variable.o vdml.o lossy.o pid.o callbackll.o msg.o pid.o sensors.o quat.o joystick.o
+
+master: master.o pmmaster.o cluster_base.o mpm.o pmrdummy.o defaultvars.o ${LIBUTIL} liboclapi.so util/tatemcast.o mop.o jsnames.o
+	#${CC} -rdynamic ${CFLAGS} -o $@ $^ ${LIBS}
+	${CC} -flat_namespace ${CFLAGS} -o $@ $^ -lreadline ${GLUT} ${LIBS}
+	cp $@ ${TOPDIR}/bin
+
+renderer: renderer.o liboclapi.so rbase.o pmrenderer.o fdprocs.o defaultvars.o ${LIBUTIL} pmmdummy.o defaultvars.o
+	${CC} -rdynamic ${CFLAGS} -o $@ $^ ${GLUT} ${LIBS}
+	#${CC} ${CFLAGS} ${GLUT} -o $@ $^ ${LIBS}
+	cp $@ ${TOPDIR}/bin
+
+liboclapi.so: caberror-local.o rg_stereo.o oclapimisc.o rg_cabin_frustum.o ${EXTS}
+	${CC} ${CFLAGS} ${DLFLAGS} ${GLUT} -o $@ $^ ${LIBS}
+	cp $@ ${TOPDIR}/lib/$@
+
+${LIBUTIL}:
+	cd util; make
+
+clean:
+	rm -f *.o master rbase renderer test *.so *~ 
+	rm -rf HTML
+	cd util; make clean
